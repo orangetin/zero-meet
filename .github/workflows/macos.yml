@@ -1,0 +1,84 @@
+name: Mac installer
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: mac-installer
+  cancel-in-progress: false
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.tag.outputs.tag }}
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+
+      - name: Bump version and push tag
+        id: tag
+        uses: anothrNick/github-tag-action@1.75.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG_PREFIX: v
+          INITIAL_VERSION: 0.1.0
+          DEFAULT_BUMP: patch
+
+  installer:
+    needs: tag
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: app/package-lock.json
+
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: aarch64-apple-darwin,x86_64-apple-darwin
+
+      - uses: swatinem/rust-cache@v2
+
+      - name: Install frontend dependencies
+        working-directory: app
+        run: npm ci
+
+      - name: Set installer version from tag
+        working-directory: app
+        env:
+          RELEASE_TAG: ${{ needs.tag.outputs.tag }}
+        run: |
+          version="${RELEASE_TAG#v}"
+          jq --arg version "$version" '.version = $version' tauri.conf.json > tauri.conf.json.tmp
+          mv tauri.conf.json.tmp tauri.conf.json
+
+      - uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          projectPath: app
+          args: --target universal-apple-darwin -- --locked
+          tagName: ${{ needs.tag.outputs.tag }}
+          releaseName: zero-meet __VERSION__ beta
+          releaseDraft: true
+          prerelease: true
+          releaseBody: |
+            For Apple Silicon and Intel Macs running macOS 15 (Sequoia) or later.
+
+            Open the DMG, drag zero-meet into Applications, then open it.
+            This beta isn't notarized by Apple. If macOS blocks it, use
+            System Settings → Privacy & Security → Open Anyway.
+
+            Join with an invitation from your host, or use your meeting
+            server's address to create a room and invite friends.

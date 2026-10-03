@@ -1,0 +1,24 @@
+[package]
+name = "zero-meet-desktop"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+anyhow.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+tokio.workspace = true
+tokio-util.workspace = true
+tracing.workspace = true
+moq-net.workspace = true
+moq-native.workspace = true
+iroh.workspace = true
+zero-meet = { path = "../meet" }
+rand = "0.9"
+tauri = { version = "2", features = [] }
+tauri-plugin-deep-link = "2"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }

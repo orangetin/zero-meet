@@ -1,0 +1,32 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "zero-meet",
+  "version": "0.1.0",
+  "identifier": "computer.zero.meet",
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "devUrl": "http://localhost:1420",
+    "beforeBuildCommand": "npm run build",
+    "frontendDist": "dist"
+  },
+  "app": {
+    "windows": [{ "label": "main", "title": "zero-meet", "width": 1100, "height": 760, "minWidth": 680, "minHeight": 540 }],
+    "security": {
+      "headers": { "Cross-Origin-Opener-Policy": "same-origin", "Cross-Origin-Embedder-Policy": "require-corp" },
+      "csp": "default-src 'self'; connect-src 'self' ipc: http://ipc.localhost ws://127.0.0.1:*; img-src 'self' blob: data:; media-src 'self' blob:; worker-src 'self' blob:; script-src 'self' blob: 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'",
+      "capabilities": [{ "identifier": "main", "windows": ["main"], "permissions": ["core:default", "deep-link:default"] }]
+    }
+  },
+  "plugins": { "deep-link": { "desktop": { "schemes": ["zero-meet"] } } },
+  "bundle": {
+    "active": true,
+    "targets": ["app", "dmg"],
+    "icon": ["icons/256x256.png"],
+    "macOS": {
+      "minimumSystemVersion": "15.0",
+      "infoPlist": "Info.plist",
+      "entitlements": "Entitlements.plist",
+      "signingIdentity": "-"
+    }
+  }
+}

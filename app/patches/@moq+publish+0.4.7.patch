@@ -1,0 +1,16 @@
+diff --git a/node_modules/@moq/publish/encoder-D4mo5uaT.js b/node_modules/@moq/publish/encoder-D4mo5uaT.js
+index 96713a2..3c4f3db 100644
+--- a/node_modules/@moq/publish/encoder-D4mo5uaT.js
++++ b/node_modules/@moq/publish/encoder-D4mo5uaT.js
+@@ -445,6 +445,11 @@ var j = class {
+ 				continue;
+ 			}
+ 			let a = r.accept(c.trackInfo({ latencyMax: this.in.latencyMax.peek() }));
++			// TRACK_INFO has no subscriber. Answer it without replacing the live rendition.
++			if (!a.used.peek()) {
++				a.close();
++				continue;
++			}
+ 			i.peek()?.close(), i.set(a), a.closed.then(() => {
+ 				i.peek() === a && i.set(void 0);
+ 			});

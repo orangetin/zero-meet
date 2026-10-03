@@ -1,0 +1,36 @@
+{
+  "name": "zero-meet-desktop",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "postinstall": "patch-package --error-on-fail",
+    "predev": "patch-package --error-on-fail",
+    "dev": "vite --port 1420 --strictPort --force",
+    "prebuild": "patch-package --error-on-fail",
+    "build": "vite build",
+    "check": "svelte-check --tsconfig tsconfig.json",
+    "tauri": "tauri"
+  },
+  "dependencies": {
+    "@kixelated/libavjs-webcodecs-polyfill": "0.5.5",
+    "@libav.js/variant-opus-af": "6.10.9",
+    "@moq/net": "0.3.5",
+    "@moq/publish": "0.4.7",
+    "@moq/signals": "0.2.3",
+    "@moq/watch": "0.5.4",
+    "@tauri-apps/api": "^2",
+    "@tauri-apps/plugin-deep-link": "^2.6.1",
+    "lucide-svelte": "^1.0.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "@tauri-apps/cli": "^2",
+    "patch-package": "8.0.1",
+    "svelte": "^5.56.3",
+    "svelte-check": "^4.6.0",
+    "typescript": "~6.0.3",
+    "vite": "^8.0.16"
+  }
+}

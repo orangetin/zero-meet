@@ -1,0 +1,13 @@
+diff --git a/node_modules/@kixelated/libavjs-webcodecs-polyfill/dist/audio-data.js b/node_modules/@kixelated/libavjs-webcodecs-polyfill/dist/audio-data.js
+index ded7610..c9fb355 100644
+--- a/node_modules/@kixelated/libavjs-webcodecs-polyfill/dist/audio-data.js
++++ b/node_modules/@kixelated/libavjs-webcodecs-polyfill/dist/audio-data.js
+@@ -219,7 +219,7 @@ export class AudioData {
+         if (typeof options.frameCount === "number") {
+             /* 1. If options.frameCount is greater than copyFrameCount, throw a
+              * RangeError. */
+-            if (options.frameCount >= copyFrameCount)
++            if (options.frameCount > copyFrameCount)
+                 throw new RangeError("Frame count out of range");
+             // 2. Otherwise, assign options.frameCount to copyFrameCount.
+             copyFrameCount = options.frameCount;

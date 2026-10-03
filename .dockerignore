@@ -1,0 +1,11 @@
+**
+!Cargo.toml
+!Cargo.lock
+!meet/
+!meet/Cargo.toml
+!meet/src/
+!meet/src/**
+!app/
+!app/Cargo.toml
+!app/src/
+!app/src/main.rs

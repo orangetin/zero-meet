@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><dict>
+  <key>NSCameraUsageDescription</key><string>Show your camera preview and share video when you join a meeting.</string>
+  <key>NSMicrophoneUsageDescription</key><string>Let others hear you when you unmute in a meeting.</string>
+</dict></plist>

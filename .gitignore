@@ -1,0 +1,8 @@
+/target/
+**/node_modules/
+**/dist/
+/artifacts/
+**/gen/schemas/
+.DS_Store
+**/test-results/
+/server.key
