@@ -1,6 +1,6 @@
 # zero-meet
 
-Zero-fuss video calls on a server you can run. No accounts. No port-forwarding.
+Zero-fuss video calls on a server you can run anywhere. No accounts. No port-forwarding.
 
 ![zero-meet demo call with four animal mascots; Pip is speaking, with a green outline and microphone waveform](assets/call.png)
 
