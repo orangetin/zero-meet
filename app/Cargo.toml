@@ -18,7 +18,7 @@ moq-net.workspace = true
 moq-native.workspace = true
 iroh.workspace = true
 zero-meet = { path = "../meet" }
-rand = "0.9"
+rand = "0.10"
 tauri = { version = "2", features = [] }
 tauri-plugin-deep-link = "2"
 tracing-subscriber = { version = "0.3", features = ["env-filter"] }
