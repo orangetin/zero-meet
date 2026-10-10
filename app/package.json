@@ -15,10 +15,10 @@
   "dependencies": {
     "@kixelated/libavjs-webcodecs-polyfill": "0.5.5",
     "@libav.js/variant-opus-af": "6.10.9",
-    "@moq/net": "0.4.1",
-    "@moq/publish": "0.5.1",
+    "@moq/net": "0.4.2",
+    "@moq/publish": "0.5.2",
     "@moq/signals": "0.2.5",
-    "@moq/watch": "0.6.1",
+    "@moq/watch": "0.6.2",
     "@tauri-apps/api": "^2",
     "@tauri-apps/plugin-deep-link": "^2.6.1",
     "lucide-svelte": "^1.0.1"
@@ -28,9 +28,9 @@
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "@tauri-apps/cli": "^2",
     "patch-package": "8.0.1",
-    "svelte": "^5.56.3",
+    "svelte": "^5.57.2",
     "svelte-check": "^4.6.0",
     "typescript": "~7.0.2",
-    "vite": "^8.0.16"
+    "vite": "^8.3.3"
   }
 }
