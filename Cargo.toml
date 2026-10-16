@@ -18,7 +18,7 @@ moq-net = "=0.2.20"
 moq-native = { version = "=0.19.17", default-features = false, features = ["websocket", "aws-lc-rs"] }
 iroh = { version = "=1.3.0", default-features = false, features = ["portmapper", "tls-aws-lc-rs"] }
 iroh-moq = { git = "https://github.com/n0-computer/iroh-live", rev = "de7f43bfc466988f08b7e63acdd7fb295a9f9fd2" }
-web-transport-iroh = "=0.8.0"
+web-transport-iroh = "=0.8.2"
 irpc = "=0.17.0"
 irpc-iroh = "=0.17.0"
 iroh-tickets = "=1.0.0"
