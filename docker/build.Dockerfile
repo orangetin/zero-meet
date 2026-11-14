@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM rust:1.99.0-bookworm@sha256:114c7a4425406451c2866b6aafe69fe29b1b298832db1277d411ac73c82d04d6 AS build
+FROM rust:1.99.1-bookworm@sha256:e6f2cff35d0f309acf8433b4f05878ed77092602c5065cc81801177da0bb3a9c AS build
 
 WORKDIR /src
 COPY Cargo.toml Cargo.lock ./
@@ -16,7 +16,7 @@ RUN --mount=type=cache,target=/usr/local/cargo/registry \
 
 RUN mkdir /data
 
-FROM gcr.io/distroless/cc-debian13:latest@sha256:159783207c2cd44c2aa5715961d13c8612368ac9bd450f887e3f08fc8ea461e3
+FROM gcr.io/distroless/cc-debian13:latest@sha256:809d04afa1be033c441f76bb0051878c342fb76d0ea236bc6dc94b655fa0fbd6
 
 COPY --from=build /zero-meet-server /zero-meet-server
 COPY --from=build --chown=65532:65532 /data /data
