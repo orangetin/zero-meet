@@ -2304,7 +2304,7 @@ dependencies = [
  "hyper",
  "hyper-util",
  "log",
- "rand 0.10.3",
+ "rand 0.10.4",
  "tokio",
  "url",
  "xmltree",
@@ -2392,9 +2392,9 @@ checksum = "791930b43c0d5973160d90a8f3894509f2b273430f5c5c73b668636d0287c5c0"
 
 [[package]]
 name = "iroh"
-version = "1.3.0"
+version = "1.4.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "885787b892b5e2507c701f132ecbd45d2bad4bbb75157a19427087c16dadb833"
+checksum = "e3689cab508af9bcef7816c1201b403595ec6aa20e7d15e1f9683bb4be4a5b17"
 dependencies = [
  "backon",
  "blake3",
@@ -2423,7 +2423,7 @@ dependencies = [
  "pin-project",
  "portable-atomic",
  "portmapper",
- "rand 0.10.3",
+ "rand 0.10.4",
  "reqwest",
  "rustc-hash",
  "rustls",
@@ -2442,9 +2442,9 @@ dependencies = [
 
 [[package]]
 name = "iroh-base"
-version = "1.3.0"
+version = "1.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6ae9092be76c9f5429776ab3394f5a5a78dc19dc2524267e884a5b9781546c3f"
+checksum = "eff8f9146946feac461ef2e5fcf7b4b795eff44958ef6faa85cba3cecea62ab3"
 dependencies = [
  "curve25519-dalek",
  "data-encoding",
@@ -2453,17 +2453,18 @@ dependencies = [
  "ed25519-dalek",
  "getrandom 0.4.3",
  "n0-error",
- "rand 0.10.3",
+ "rand 0.10.4",
  "serde",
+ "tracing",
  "url",
  "zeroize",
 ]
 
 [[package]]
 name = "iroh-dns"
-version = "1.3.0"
+version = "1.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "80276761b56e904e26ea71d0863beef0bb8d5ab6b639cbd1338e4b615209e3a1"
+checksum = "2cf4ac424ab7e13357c7bff7b6320b865e6ffc2320d726b58d1c8162f52a1406"
 dependencies = [
  "arc-swap",
  "cfg_aliases",
@@ -2473,9 +2474,9 @@ dependencies = [
  "n0-error",
  "n0-future",
  "portable-atomic",
- "rand 0.10.3",
+ "rand 0.10.4",
  "rustls",
- "simple-dns",
+ "simple-dns 0.13.1",
  "strum",
  "tokio",
  "tracing",
@@ -2528,9 +2529,9 @@ dependencies = [
 
 [[package]]
 name = "iroh-relay"
-version = "1.3.0"
+version = "1.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ee116a8233f84980574bb8d11e4517503080cd2c3605bafca04ee9c35d708bd9"
+checksum = "aef6e9c979c78b0dadf6a2aac4ff629c4ffb91ec34586275673524248dc72f55"
 dependencies = [
  "blake3",
  "bytes",
@@ -2545,15 +2546,16 @@ dependencies = [
  "iroh-base",
  "iroh-dns",
  "iroh-metrics",
- "lru",
+ "lru 0.19.1",
  "n0-error",
  "n0-future",
  "noq",
  "noq-proto",
  "num_enum",
+ "percent-encoding",
  "pin-project",
  "postcard",
- "rand 0.10.3",
+ "rand 0.10.4",
  "reqwest",
  "rustls",
  "rustls-pki-types",
@@ -2592,13 +2594,36 @@ checksum = "3623d6ff582b415904b29bbe6ebcb4a4f9a262ccdee05a45fdd003ef0950c386"
 dependencies = [
  "futures-buffered",
  "futures-util",
- "irpc-derive",
+ "irpc-derive 0.17.0",
  "n0-error",
  "n0-future",
  "noq",
  "postcard",
  "rcgen",
  "rustls",
+ "serde",
+ "smallvec",
+ "tokio",
+ "tokio-util",
+ "tracing",
+]
+
+[[package]]
+name = "irpc"
+version = "1.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "fecfcc2a6db86a2a0c1d8138fd58cd83e882e9923cb9e4faf5962ffa2b5a6f7e"
+dependencies = [
+ "derive_more",
+ "futures-util",
+ "getrandom 0.4.3",
+ "iroh",
+ "irpc-derive 1.0.0",
+ "n0-error",
+ "n0-future",
+ "noq",
+ "portable-atomic",
+ "postcard",
  "serde",
  "smallvec",
  "tokio",
@@ -2618,6 +2643,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "irpc-derive"
+version = "1.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9c29e19b1a86c662125cdaa33860723dc966c4f50cad207d21ea64b4a14b51aa"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn 3.0.6",
+]
+
+[[package]]
 name = "irpc-iroh"
 version = "0.17.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2626,7 +2662,7 @@ dependencies = [
  "getrandom 0.3.4",
  "iroh",
  "iroh-base",
- "irpc",
+ "irpc 0.17.0",
  "n0-error",
  "n0-future",
  "postcard",
@@ -2872,6 +2908,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "kio"
+version = "0.6.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "18e98fd8a19fa1eea91cb422c970b27be82e941dfc51ecae704dd97bd315874d"
+dependencies = [
+ "loom",
+ "smallvec",
+]
+
+[[package]]
 name = "kqueue"
 version = "1.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3012,6 +3058,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "lru"
+version = "0.19.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "83be4da409554841af087163ad187608824ad8ca8713d8e124c8e0f704a2f92f"
+dependencies = [
+ "hashbrown 0.17.1",
+]
+
+[[package]]
 name = "lru-slab"
 version = "0.1.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3118,7 +3173,7 @@ dependencies = [
  "notify",
  "qmux",
  "quinn",
- "rand 0.10.3",
+ "rand 0.10.4",
  "rcgen",
  "rustls",
  "rustls-platform-verifier",
@@ -3147,7 +3202,7 @@ dependencies = [
  "futures",
  "kio 0.5.8",
  "num_enum",
- "rand 0.10.3",
+ "rand 0.10.4",
  "serde",
  "slab",
  "thiserror 2.0.21",
@@ -3186,15 +3241,15 @@ dependencies = [
  "derive_more",
  "ipconfig",
  "jni 0.22.4",
- "lru",
+ "lru 0.18.5",
  "n0-error",
  "n0-future",
  "ndk-context",
- "rand 0.10.3",
+ "rand 0.10.4",
  "reqwest",
  "rustc-hash",
  "rustls",
- "simple-dns",
+ "simple-dns 0.12.0",
  "system-configuration",
  "tokio",
  "tokio-rustls",
@@ -3204,9 +3259,9 @@ dependencies = [
 
 [[package]]
 name = "n0-error"
-version = "1.0.1"
+version = "1.0.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "26c59ea174675ce6bc196878851e5049e11b8b1f9af3ba87e4d6df8d828bb001"
+checksum = "96c2215d16de3a55894583a539e6b151fb45236c3a6da45a18a40af73dc00636"
 dependencies = [
  "anyhow",
  "n0-error-macros",
@@ -3215,9 +3270,9 @@ dependencies = [
 
 [[package]]
 name = "n0-error-macros"
-version = "1.0.1"
+version = "1.0.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4412346410d6616f3668c40e53c298e5320c7b856f7a960e5914e442601be79f"
+checksum = "6217fd5f567ce1e53f324744c14fab04899861e397539c5f3cc08bd7c1dcd2de"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -3472,9 +3527,9 @@ dependencies = [
 
 [[package]]
 name = "noq"
-version = "1.3.0"
+version = "1.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b78be567e796cfa74bb9bdc4117790af2d505eb887019cf8803244353eb09d89"
+checksum = "0c2cf8bf3b78c2684a8485782c3357344416f264050f8d08a06c45c4642d87a2"
 dependencies = [
  "bytes",
  "cfg_aliases",
@@ -3494,9 +3549,9 @@ dependencies = [
 
 [[package]]
 name = "noq-proto"
-version = "1.3.0"
+version = "1.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7c1e5b6fe668491eca022f745a0a9402585626c73a7b839b3424ace15d6a9c8f"
+checksum = "afb15c81d1f9b529d0c1f5095ee2e799eca9f361aa5f712424e758ce90f825d3"
 dependencies = [
  "aes-gcm",
  "aws-lc-rs",
@@ -3507,7 +3562,7 @@ dependencies = [
  "getrandom 0.4.3",
  "identity-hash",
  "lru-slab",
- "rand 0.10.3",
+ "rand 0.10.4",
  "rand_pcg",
  "ring",
  "rustc-hash",
@@ -3524,9 +3579,9 @@ dependencies = [
 
 [[package]]
 name = "noq-udp"
-version = "1.3.0"
+version = "1.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4dc50afea61aff926e150a36c31f06094608848e114a3fe667d76ec233163b1c"
+checksum = "716df6621d528211d75608903c0dd54bee78745444cdcbb791bcfbc55717a29f"
 dependencies = [
  "cfg_aliases",
  "libc",
@@ -4216,7 +4271,7 @@ dependencies = [
  "n0-future",
  "netwatch",
  "num_enum",
- "rand 0.10.3",
+ "rand 0.10.4",
  "serde",
  "smallvec",
  "socket2",
@@ -4404,7 +4459,7 @@ dependencies = [
  "fastbloom",
  "getrandom 0.4.3",
  "lru-slab",
- "rand 0.10.3",
+ "rand 0.10.4",
  "rand_pcg",
  "ring",
  "rustc-hash",
@@ -4465,9 +4520,9 @@ dependencies = [
 
 [[package]]
 name = "rand"
-version = "0.10.3"
+version = "0.10.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "65c9fb96cbc91e3478eaae79a69fcd3f1ae4ad052e471fe6732fff548984b4af"
+checksum = "8f6fa277c67e6ea590466f04c3fe82cb509f0864fe470643e5570de9514a9b11"
 dependencies = [
  "chacha20",
  "getrandom 0.4.3",
@@ -4699,9 +4754,9 @@ dependencies = [
 
 [[package]]
 name = "rustls"
-version = "0.23.45"
+version = "0.23.46"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0d41d731c7d2f962d1ccc364cec258de3c0e93b38c2fb3ba97ac74513048d634"
+checksum = "48e13bd8c0e9365c43cfa5c9e8f9ad49d3c8444926c9aac819e0e4dc503c8fdf"
 dependencies = [
  "aws-lc-rs",
  "log",
@@ -4996,9 +5051,9 @@ dependencies = [
 
 [[package]]
 name = "serde_json"
-version = "1.0.151"
+version = "1.0.154"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c841b55ecdae098c80dcae9cf767f6f8a0c2cdb3416bbef72181df4d0fe73f14"
+checksum = "e7e9cc8b1b85264074fbcc02a88680c4096b1e47df8f739dceb03bf482f04bd6"
 dependencies = [
  "itoa",
  "memchr",
@@ -5221,6 +5276,15 @@ name = "simple-dns"
 version = "0.12.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "2b6f884fa9a8d48101774bfbd3aeb81e968dd22cffd19a372da69f183db22c1a"
+dependencies = [
+ "bitflags 2.13.2",
+]
+
+[[package]]
+name = "simple-dns"
+version = "0.13.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8aea2b78df6bbe38fb98d2c8140ada65fb63a314246a0c38626140dd21c69ff7"
 dependencies = [
  "bitflags 2.13.2",
 ]
@@ -5573,9 +5637,9 @@ checksum = "61c41af27dd6d1e27b1b16b489db798443478cef1f06a660c96db617ba5de3b1"
 
 [[package]]
 name = "tauri"
-version = "2.12.1"
+version = "2.12.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ed99ee9694a2deb776d91cae48ac7411ddfc89ecae2f9b5041111d8c88f2ace9"
+checksum = "d061d042ccd2df9c9f1508c1e63d835278c0a4c8801eb41764080e51f2eaaf34"
 dependencies = [
  "anyhow",
  "bytes",
@@ -5624,9 +5688,9 @@ dependencies = [
 
 [[package]]
 name = "tauri-build"
-version = "2.7.1"
+version = "2.7.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "59563ca5b331fd97f27ee9672ec8d36d33bb3c9e2c9f6710a1a5687256052e45"
+checksum = "2eea0b6302f82c574b21af6fc6ae6e86183b9280853c22621d0abf0936911ffc"
 dependencies = [
  "anyhow",
  "cargo_toml",
@@ -5702,9 +5766,9 @@ dependencies = [
 
 [[package]]
 name = "tauri-plugin-deep-link"
-version = "2.6.1"
+version = "2.6.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4ac7a92a46ab5c88f44532ca50906d6e448a948d4ddf8c5376ab125e3260f736"
+checksum = "ab551d9bec27bb79d1c7fe5ed38c5cfd1cebb86efa745acc65f5853f345f6e56"
 dependencies = [
  "dunce",
  "plist",
@@ -5950,9 +6014,9 @@ checksum = "fd3ca314f692efd6c868f8408f53fe444634a845f96c028b97d35f6a1f79f0ee"
 
 [[package]]
 name = "tokio"
-version = "1.53.2"
+version = "1.54.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e95f91fcc7a621e8b030f6aa23c71fe9838ae2fb4d8118b75602a328f5144044"
+checksum = "b52fd3255258d26fac7264ab5a76b53c13367136dc011d3d6ad4f8ed070396a3"
 dependencies = [
  "bytes",
  "libc",
@@ -6016,9 +6080,9 @@ dependencies = [
 
 [[package]]
 name = "tokio-util"
-version = "0.7.19"
+version = "0.7.20"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "494815d09bf52b5548659851081238f0ca39ff638363907596da739561c62c52"
+checksum = "e464cf451ba96ebfc6f9b6542f17ee8b8956e33f1e40d9690624e59d7a7f8a4b"
 dependencies = [
  "bytes",
  "futures-core",
@@ -6043,7 +6107,7 @@ dependencies = [
  "getrandom 0.4.3",
  "http",
  "httparse",
- "rand 0.10.3",
+ "rand 0.10.4",
  "ring",
  "rustls-pki-types",
  "sha1_smol",
@@ -6610,14 +6674,14 @@ dependencies = [
 
 [[package]]
 name = "web-transport-iroh"
-version = "0.8.2"
+version = "0.8.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "42093e60c3e6a36a9372428967915126f7ed07d9f4ae9c72f6857e1c48905808"
+checksum = "70f38621accfacdba98b751e09e305420d04f4968af5b87a6e82af600f92ee77"
 dependencies = [
  "bytes",
  "http",
  "iroh",
- "kio 0.5.9",
+ "kio 0.6.4",
  "n0-error",
  "n0-future",
  "tokio",
@@ -7416,18 +7480,18 @@ dependencies = [
  "iroh",
  "iroh-moq",
  "iroh-tickets",
- "irpc",
+ "irpc 1.0.0",
  "irpc-iroh",
  "moq-net",
  "postcard",
- "rand 0.10.3",
+ "rand 0.10.4",
  "serde",
  "tempfile",
  "tokio",
  "tokio-util",
  "tracing",
  "tracing-subscriber",
- "web-transport-iroh 0.8.2",
+ "web-transport-iroh 0.8.4",
 ]
 
 [[package]]
@@ -7438,7 +7502,7 @@ dependencies = [
  "iroh",
  "moq-native",
  "moq-net",
- "rand 0.10.3",
+ "rand 0.10.4",
  "serde",
  "serde_json",
  "tauri",
